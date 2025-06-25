@@ -2,83 +2,185 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yuvraj Singh | Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000 100%);
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
       color: #fff;
-      min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
     }
-    canvas.animated-bg {
+    .animated-bg {
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       z-index: -1;
       pointer-events: none;
-    }
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
     }
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 24px 8vw;
-      background: transparent;
     }
-    .navbar .logo {
-      font-size: 1.8em;
+    .logo {
+      font-size: 1.7em;
       font-weight: bold;
       background: linear-gradient(90deg, #00bfff, #2196f3);
-      background-size: 200% auto;
+      background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: gradientMove 5s linear infinite;
-      filter: drop-shadow(0 2px 12px #00bfff80);
+      animation: gradient-move 3s linear infinite;
+      filter: drop-shadow(0 2px 12px #00bfff88);
+    }
+    @keyframes gradient-move {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
     }
     .navbar nav a {
-      color: #fff;
+      margin: 0 18px;
       text-decoration: none;
-      margin: 0 16px;
       font-weight: 500;
       font-size: 1.1em;
+      color: #fff;
       position: relative;
-      transition: color 0.2s;
+      transition: color 0.3s;
+    }
+    .navbar nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #00bfff;
+      transition: width 0.3s;
     }
     .navbar nav a:hover {
       color: #00bfff;
     }
-    .navbar .download-btn {
+    .navbar nav a:hover::after {
+      width: 100%;
+    }
+    .download-btn {
       background: #ff3cac;
+      color: #fff;
       padding: 10px 22px;
       border-radius: 8px;
       font-weight: bold;
       text-decoration: none;
-      color: #fff;
-      box-shadow: 0 2px 12px #ff3cac66;
-      transition: all 0.3s ease;
+      box-shadow: 0 2px 12px #ff3cac44;
+      transition: background 0.3s, transform 0.3s;
     }
-    .navbar .download-btn:hover {
+    .download-btn:hover {
       background: #b3006e;
+      transform: scale(1.07) rotate(-2deg);
+      box-shadow: 0 4px 24px #ff3cac88;
+    }
+    .hero-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 60px 8vw;
+      min-height: 70vh;
+      gap: 48px;
+    }
+    .profile-pic-container {
+      flex: 0 0 320px;
+      display: flex;
+      justify-content: center;
+    }
+    .profile-pic {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid #00bfff;
+      box-shadow: 0 0 40px #00bfff55, 0 4px 32px #0008;
+      transition: transform 0.3s;
+      animation: pulseGlow 2.5s infinite alternate;
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 40px #00bfff55, 0 4px 32px #0008; }
+      100% { box-shadow: 0 0 80px #00bfff99, 0 8px 48px #000a; }
+    }
+    .profile-pic-container:hover .profile-pic {
       transform: scale(1.05) rotate(-2deg);
+    }
+    .intro {
+      max-width: 500px;
+    }
+    .intro h2 {
+      font-size: 2.2em;
+      margin: 0 0 10px;
+    }
+    .intro h3 {
+      font-size: 1.5em;
+      color: #00bfff;
+      min-height: 2.2em;
+    }
+    .type-cursor {
+      display: inline-block;
+      color: #00bfff;
+      font-weight: bold;
+      animation: blink 1s steps(1) infinite;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+    .intro p {
+      font-size: 1.1em;
+      color: #cce6ff;
+      margin-bottom: 24px;
+    }
+    .hero-btns a {
+      display: inline-block;
+      margin-right: 16px;
+      background: #00bfff;
+      color: #fff;
+      padding: 10px 26px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.08em;
+      box-shadow: 0 2px 12px #00bfff44;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .hero-btns a:last-child {
+      background: #222;
+      color: #00bfff;
+      border: 2px solid #00bfff;
+    }
+    .hero-btns a:hover {
+      background: #0099cc;
+      color: #fff;
+      transform: scale(1.09) rotate(-2deg);
+      box-shadow: 0 4px 24px #00bfff88;
+    }
+    .socials a {
+      color: #fff;
+      font-size: 1.7em;
+      margin-right: 16px;
+      transition: transform 0.3s, color 0.3s;
+    }
+    .socials a:hover {
+      transform: scale(1.22) rotate(-10deg);
+      color: #00bfff;
     }
   </style>
 </head>
 <body>
   <canvas class="animated-bg"></canvas>
-
-  <div class="navbar fade-in-down">
-    <div class="logo">Yuvraj Singh</div>
+  <div class="navbar">
+    <div class="logo">Portfolio</div>
     <nav>
       <a href="#projects">Projects</a>
       <a href="#about">About</a>
@@ -86,326 +188,58 @@
       <a href="#contact">Contact</a>
     </nav>
     <a href="Yuvraj_Singh_Resume.pdf" class="download-btn" download>
-      <i class="fa fa-download"></i> CV
+      <i class="fa fa-download"></i> Download CV
     </a>
   </div>
-  <!-- Hero Section -->
-  <section class="hero-section" style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;padding:40px 8vw;gap:48px;">
-    <div class="profile-pic-container" style="flex:0 0 280px;">
-      <div style="width:260px;height:260px;border-radius:50%;background:#111;border:6px solid #00bfff;box-shadow:0 0 40px #00bfff55, 0 4px 32px #0008;animation:pulseGlow 2.5s infinite alternate;"></div>
+  <section class="hero-section">
+    <div class="profile-pic-container">
+      <img src="profile.jpg.jpg" alt="Yuvraj Singh" class="profile-pic" />
     </div>
-    <div class="intro" style="max-width:500px;">
-      <h2 style="font-size:2.2em;color:#fff;margin:0 0 10px;">Hello, I'm<br><span style="color:#00bfff;">Yuvraj Singh</span></h2>
-      <h3 style="font-size:1.5em;margin:0 0 18px;"><span>I am </span><span id="typewriter" style="color:#00bfff;"></span><span class="type-cursor" style="animation:blink 1s steps(1) infinite;">|</span></h3>
-      <p style="font-size:1.1em;color:#cce6ff;margin-bottom:24px;">
-        I love to build modern, interactive web apps using JavaScript, HTML, and CSS.<br>
-        Always learning, always coding, always growing.
-      </p>
-      <div class="hero-btns" style="margin-bottom:28px;">
-        <a href="#contact" id="hireMeBtn" style="margin-right:16px;background:#00bfff;color:#fff;padding:10px 26px;border-radius:8px;font-weight:bold;text-decoration:none;box-shadow:0 2px 12px #00bfff44;">Hire Me</a>
-        <a href="#contact" id="contactMeBtn" style="background:#222;color:#00bfff;border:2px solid #00bfff;padding:10px 26px;border-radius:8px;font-weight:bold;text-decoration:none;">Contact Me</a>
+    <div class="intro">
+      <h2>Hello, I'm <span style="color:#00bfff;">Yuvraj Singh</span></h2>
+      <h3>I am <span id="typewriter"></span><span class="type-cursor">|</span></h3>
+      <p>I love to build modern, interactive web apps using JavaScript, HTML, and CSS.<br>Always learning, always coding, always growing.</p>
+      <div class="hero-btns">
+        <a href="#contact" id="hireMeBtn">Hire Me</a>
+        <a href="#contact">Contact Me</a>
       </div>
-      <div class="socials" style="margin-top:10px;">
-        <a href="https://github.com/yourusername" target="_blank" style="color:#fff;font-size:1.7em;margin-right:16px;"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com/in/yourusername" target="_blank" style="color:#fff;font-size:1.7em;margin-right:16px;"><i class="fab fa-linkedin"></i></a>
-        <a href="https://discord.com/users/yuvrajsingh0321" target="_blank" style="color:#fff;font-size:1.7em;margin-right:16px;"><i class="fab fa-discord"></i></a>
+      <div class="socials">
+        <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://discord.com/users/yuvrajsingh0321" target="_blank"><i class="fab fa-discord"></i></a>
       </div>
     </div>
   </section>
+  <script>
+    const typewriterTexts = ["Web Developer", "Front End Developer"];
+    let twIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const twSpan = document.getElementById("typewriter");
 
-  <!-- Stats Section -->
-  <div class="stats-bar" style="display:flex;justify-content:center;flex-wrap:wrap;background:rgba(10,30,60,0.95);border-radius:16px;box-shadow:0 2px 24px #0006;margin:48px 8vw 0 8vw;">
-    <div class="stat-box" style="flex:1;padding:32px;min-width:120px;text-align:center;">
-      <div class="stat-number" id="stat-years" style="font-size:2.2em;font-weight:bold;color:#00bfff;">1+</div>
-      <div class="stat-label" style="font-size:1.05em;opacity:0.85;">Years of Experience</div>
-    </div>
-    <div class="stat-box" style="flex:1;padding:32px;min-width:120px;text-align:center;">
-      <div class="stat-number" id="stat-projects" style="font-size:2.2em;font-weight:bold;color:#00bfff;">30+</div>
-      <div class="stat-label" style="font-size:1.05em;opacity:0.85;">Projects Completed</div>
-    </div>
-    <div class="stat-box" style="flex:1;padding:32px;min-width:120px;text-align:center;">
-      <div class="stat-number" id="stat-clients" style="font-size:2.2em;font-weight:bold;color:#00bfff;">5+</div>
-      <div class="stat-label" style="font-size:1.05em;opacity:0.85;">Happy Clients</div>
-    </div>
-    <div class="stat-box" style="flex:1;padding:32px;min-width:120px;text-align:center;">
-      <div class="stat-number" id="stat-skills" style="font-size:2.2em;font-weight:bold;color:#00bfff;">10+</div>
-      <div class="stat-label" style="font-size:1.05em;opacity:0.85;">Skills Learned</div>
-    </div>
-  </div>
-
-  <style>
-    @keyframes pulseGlow {
-      0% { box-shadow: 0 0 40px #00bfff55, 0 4px 32px #0008; }
-      100% { box-shadow: 0 0 80px #00bfff99, 0 8px 48px #000a; }
-    }
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-  </style>
-  <!-- Projects Section -->
-  <section id="projects" style="padding:60px 8vw;">
-    <h2 class="section-title" style="font-size:2em;color:#00bfff;margin-bottom:18px;">Projects</h2>
-    <div class="projects-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:32px;">
-      
-      <div class="project-card" style="background:rgba(15,32,60,0.95);border-radius:16px;padding:32px 24px;box-shadow:0 2px 24px #0006;border:1.5px solid #00bfff33;transition:transform 0.4s,box-shadow 0.4s,border 0.3s;">
-        <div class="project-title" style="font-size:1.3em;font-weight:bold;color:#00bfff;margin-bottom:10px;display:flex;align-items:center;gap:12px;">
-          <i class="fab fa-js-square" style="color:#00bfff;"></i> Maze Game
-        </div>
-        <div class="project-desc" style="color:#cce6ff;font-size:1.08em;margin-bottom:18px;">
-          A fun and challenging maze game with keyboard and swipe controls. Built with vanilla JS and canvas.
-        </div>
-        <a class="project-link" href="https://684102248eda859751d0c1ed--yuvraj-maze-game.netlify.app/" target="_blank" style="display:inline-block;background:#00bfff;color:#fff;padding:9px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:1em;box-shadow:0 2px 12px #00bfff44;transition:all 0.3s;">Play Now</a>
-      </div>
-
-      <div class="project-card" style="background:rgba(15,32,60,0.95);border-radius:16px;padding:32px 24px;box-shadow:0 2px 24px #0006;border:1.5px solid #00bfff33;transition:transform 0.4s,box-shadow 0.4s,border 0.3s;">
-        <div class="project-title" style="font-size:1.3em;font-weight:bold;color:#00bfff;margin-bottom:10px;display:flex;align-items:center;gap:12px;">
-          <i class="fab fa-discord" style="color:#00bfff;"></i> Zyrok Team Discord Bot
-        </div>
-        <div class="project-desc" style="color:#cce6ff;font-size:1.08em;margin-bottom:18px;">
-          A powerful multi-feature Discord bot with ticketing, minigames, messaging, and automation for your server.
-        </div>
-        <a class="project-link" href="https://zyrok-bot.netlify.app/" target="_blank" style="display:inline-block;background:#00bfff;color:#fff;padding:9px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:1em;box-shadow:0 2px 12px #00bfff44;transition:all 0.3s;">Explore Bot</a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills" style="padding:60px 8vw;">
-    <h2 class="section-title" style="text-align:center;color:#00bfff;font-size:2em;margin-bottom:18px;">Technical Skills</h2>
-    <div class="skills-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:36px 24px;justify-items:center;align-items:center;background:rgba(20,40,80,0.85);border-radius:14px;padding:32px 16px;margin-bottom:32px;">
-      
-      <a href="https://developer.mozilla.org/docs/Web/JavaScript" target="_blank" title="JavaScript" style="display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#2196f3;font-weight:500;font-size:1.08em;transition:all 0.3s;">
-        <i class="fab fa-js-square" style="font-size:2.8em;margin-bottom:10px;"></i>
-        <span>JavaScript</span>
-      </a>
-
-      <a href="https://developer.mozilla.org/docs/Web/HTML" target="_blank" title="HTML5" style="display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#2196f3;font-weight:500;font-size:1.08em;transition:all 0.3s;">
-        <i class="fab fa-html5" style="font-size:2.8em;margin-bottom:10px;"></i>
-        <span>HTML5</span>
-      </a>
-
-      <a href="https://developer.mozilla.org/docs/Web/CSS" target="_blank" title="CSS3" style="display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#2196f3;font-weight:500;font-size:1.08em;transition:all 0.3s;">
-        <i class="fab fa-css3-alt" style="font-size:2.8em;margin-bottom:10px;"></i>
-        <span>CSS3</span>
-      </a>
-
-      <a href="https://discord.com/" target="_blank" title="Discord" style="display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#2196f3;font-weight:500;font-size:1.08em;transition:all 0.3s;">
-        <i class="fab fa-discord" style="font-size:2.8em;margin-bottom:10px;"></i>
-        <span>Discord</span>
-      </a>
-
-      <a href="https://code.visualstudio.com/" target="_blank" title="VS Code" style="display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#2196f3;font-weight:500;font-size:1.08em;transition:all 0.3s;">
-        <i class="fab fa-vuejs" style="font-size:2.8em;margin-bottom:10px;color:#2196f3;filter:grayscale(1) brightness(1.5);"></i>
-        <span>VS Code</span>
-      </a>
-
-      <a href="https://nodejs.org/" target="_blank" title="Node.js" style="display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#2196f3;font-weight:500;font-size:1.08em;transition:all 0.3s;">
-        <i class="fab fa-node-js" style="font-size:2.8em;margin-bottom:10px;"></i>
-        <span>Node.js</span>
-      </a>
-
-    </div>
-  </section>
-  <!-- About Section -->
-  <section id="about" style="padding:60px 8vw;background:linear-gradient(120deg,rgba(20,20,40,0.9),rgba(15,15,30,0.9));">
-    <h2 class="section-title" style="color:#00bfff;font-size:2em;margin-bottom:18px;">About Me</h2>
-    <div class="about-content" style="color:#cce6ff;font-size:1.1em;line-height:1.7em;background:rgba(10,20,40,0.7);padding:32px 24px;border-radius:14px;box-shadow:0 0 16px #00bfff22;">
-      <p>
-        Hi! I'm <b style="color:#00bfff;">Yuvraj Singh</b>, a passionate and detail-oriented <b>web developer</b> who loves to craft responsive, elegant and interactive user interfaces using modern HTML, CSS and JavaScript.
-      </p>
-      <p style="margin-top:12px;">
-        I specialize in building creative front-end interfaces and engaging user experiences. I enjoy solving real-world problems with code and constantly learn new tools and techniques to improve my craft.
-      </p>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" style="padding:60px 8vw;background:#0d1a2b;">
-    <h2 class="section-title" style="color:#00bfff;font-size:2em;margin-bottom:18px;">Contact</h2>
-    <div class="contact-content" style="color:#cce6ff;font-size:1.08em;background:rgba(10,20,40,0.6);padding:28px 22px;border-radius:12px;box-shadow:0 0 16px #00bfff22;">
-      <p><b>Email:</b> <a href="mailto:ys8800221@gmail.com" style="color:#00bfff;text-decoration:underline;">ys8800221@gmail.com</a></p>
-      <p><b>Discord:</b> <span style="color:#7289da;font-weight:bold;">yuvrajsingh0321</span></p>
-      <p style="margin-top:12px;">
-        <b>Socials:</b><br>
-        <a href="https://github.com/yourusername" target="_blank" style="margin-right:14px;font-size:1.4em;color:#ccc;"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com/in/yourusername" target="_blank" style="margin-right:14px;font-size:1.4em;color:#ccc;"><i class="fab fa-linkedin"></i></a>
-        <a href="https://discord.com/users/yuvrajsingh0321" target="_blank" style="margin-right:14px;font-size:1.4em;color:#ccc;"><i class="fab fa-discord"></i></a>
-      </p>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer style="text-align:center;padding:20px;background:#081421;color:#888;font-size:0.95em;">
-    © <script>document.write(new Date().getFullYear())</script> Yuvraj Singh • All Rights Reserved
-  </footer>
-<script>
-// 🌌 Animated Background (Floating Blue Circles)
-const canvas = document.querySelector('.animated-bg');
-const ctx = canvas.getContext('2d');
-let w = window.innerWidth, h = window.innerHeight;
-let circles = [];
-
-function resizeBG() {
-  w = window.innerWidth;
-  h = window.innerHeight;
-  canvas.width = w;
-  canvas.height = h;
-}
-window.addEventListener('resize', resizeBG);
-
-function randomCircle() {
-  const blueShades = ['#00bfff', '#2196f3', '#1e90ff', '#3a8dde', '#4fc3f7'];
-  return {
-    x: Math.random() * w,
-    y: Math.random() * h,
-    r: 30 + Math.random() * 60,
-    dx: -0.3 + Math.random() * 0.6,
-    dy: -0.2 + Math.random() * 0.4,
-    alpha: 0.05 + Math.random() * 0.12,
-    color: blueShades[Math.floor(Math.random() * blueShades.length)]
-  };
-}
-
-function createCircles() {
-  circles = [];
-  let count = Math.max(20, Math.floor(w * h / 30000));
-  for (let i = 0; i < count; i++) circles.push(randomCircle());
-}
-
-function animateBG() {
-  ctx.clearRect(0, 0, w, h);
-  for (let c of circles) {
-    ctx.beginPath();
-    ctx.arc(c.x, c.y, c.r, 0, 2 * Math.PI);
-    ctx.fillStyle = c.color;
-    ctx.globalAlpha = c.alpha;
-    ctx.shadowColor = c.color;
-    ctx.shadowBlur = 25;
-    ctx.fill();
-    ctx.globalAlpha = 1;
-    ctx.shadowBlur = 0;
-
-    c.x += c.dx;
-    c.y += c.dy;
-
-    // wrap around edges
-    if (c.x < -c.r) c.x = w + c.r;
-    if (c.x > w + c.r) c.x = -c.r;
-    if (c.y < -c.r) c.y = h + c.r;
-    if (c.y > h + c.r) c.y = -c.r;
-  }
-  requestAnimationFrame(animateBG);
-}
-resizeBG();
-createCircles();
-animateBG();
-window.addEventListener('resize', () => {
-  resizeBG();
-  createCircles();
-});
-
-// 🧠 Typewriter Effect
-const typewriterTexts = ["Web Developer", "Front End Developer"];
-let twIndex = 0, charIndex = 0, isDeleting = false;
-const twSpan = document.getElementById("typewriter");
-
-function typeLoop() {
-  const current = typewriterTexts[twIndex];
-  if (!isDeleting) {
-    twSpan.textContent = current.substring(0, charIndex + 1);
-    charIndex++;
-    if (charIndex === current.length) {
-      isDeleting = true;
-      setTimeout(typeLoop, 1000);
-      return;
-    }
-  } else {
-    twSpan.textContent = current.substring(0, charIndex - 1);
-    charIndex--;
-    if (charIndex === 0) {
-      isDeleting = false;
-      twIndex = (twIndex + 1) % typewriterTexts.length;
-      setTimeout(typeLoop, 400);
-      return;
-    }
-  }
-  setTimeout(typeLoop, isDeleting ? 60 : 100);
-}
-typeLoop();
-
-// 📈 Fade-in Animations on Scroll
-const observer = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-      obs.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.2 });
-
-document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .fade-in').forEach(el => {
-  observer.observe(el);
-});
-
-// 📊 Animated Stats Counter
-let statsAnimated = false;
-const statsBar = document.querySelector('.stats-bar');
-
-function animateStatNumber(id, target) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  let current = 0;
-  const plus = target.includes('+');
-  const value = parseInt(target);
-  const duration = 1000;
-  const step = Math.ceil(value / (duration / 20));
-
-  function update() {
-    if (current < value) {
-      current += step;
-      if (current > value) current = value;
-      el.textContent = current + (plus ? '+' : '');
-      setTimeout(update, 20);
-    } else {
-      el.textContent = target;
-    }
-  }
-  update();
-}
-
-if (statsBar) {
-  const statsObserver = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !statsAnimated) {
-        animateStatNumber('stat-years', '1+');
-        animateStatNumber('stat-projects', '30+');
-        animateStatNumber('stat-clients', '20+');
-        animateStatNumber('stat-skills', '10+');
-        statsAnimated = true;
-        obs.unobserve(statsBar);
+    function typeLoop() {
+      const current = typewriterTexts[twIndex];
+      if (!isDeleting) {
+        twSpan.textContent = current.substring(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === current.length) {
+          isDeleting = true;
+          setTimeout(typeLoop, 1200);
+          return;
+        }
+      } else {
+        twSpan.textContent = current.substring(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          isDeleting = false;
+          twIndex = (twIndex + 1) % typewriterTexts.length;
+          setTimeout(typeLoop, 500);
+          return;
+        }
       }
-    });
-  }, { threshold: 0.3 });
-  statsObserver.observe(statsBar);
-}
-
-// 📩 Buttons
-document.getElementById('hireMeBtn').onclick = function(e) {
-  e.preventDefault();
-  window.open('https://stellular-bavarois-14f431.netlify.app/', '_blank');
-};
-document.getElementById('contactMeBtn').onclick = function(e) {
-  e.preventDefault();
-  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-};
-</script>
-<!-- Footer (optional) -->
-<footer style="text-align:center;padding:30px 10px;color:#aaa;font-size:0.9em;">
-  © 2025 Yuvraj Singh • Built with ❤️ using HTML, CSS, and JavaScript.
-</footer>
-
-<!-- Close body and html -->
+      setTimeout(typeLoop, isDeleting ? 60 : 100);
+    }
+    typeLoop();
+  </script>
 </body>
 </html>
