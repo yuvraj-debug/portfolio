@@ -335,8 +335,8 @@
         /* --- Projects Grid --- */
         .projects-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
             padding: 12px 0;
             background: none;
             box-shadow: none;
@@ -345,7 +345,7 @@
             background: rgba(15, 32, 60, 0.95);
             border-radius: 16px;
             box-shadow: 0 2px 24px #0006;
-            padding: 32px 24px 24px 24px;
+            padding: 20px 16px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -355,6 +355,7 @@
             transition: transform 0.4s cubic-bezier(.4,0,.2,1), box-shadow 0.4s cubic-bezier(.4,0,.2,1), border 0.3s;
             opacity: 0;
             transform: translateY(40px);
+            min-height: 220px;
         }
         .project-card.in-view {
             opacity: 1;
@@ -377,8 +378,9 @@
         }
         .project-desc {
             color: #cce6ff;
-            font-size: 1.08em;
-            margin-bottom: 18px;
+            font-size: 1em;
+            margin-bottom: 16px;
+            flex-grow: 1;
         }
         .project-link {
             display: inline-block;
@@ -391,7 +393,7 @@
             font-size: 1em;
             box-shadow: 0 2px 12px #00bfff44;
             transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-            margin-top: 8px;
+            margin-top: auto;
         }
         .project-link:hover {
             background: #0099cc;
@@ -452,6 +454,79 @@
             font-size: 1em;
             letter-spacing: 0.5px;
         }
+        
+        /* New compact project view */
+        .projects-container {
+            position: relative;
+            margin-top: 30px;
+        }
+        .projects-scroller {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 1fr;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 20px;
+            scrollbar-width: thin;
+            scrollbar-color: #00bfff rgba(15, 32, 60, 0.95);
+        }
+        .projects-scroller::-webkit-scrollbar {
+            height: 8px;
+        }
+        .projects-scroller::-webkit-scrollbar-track {
+            background: rgba(15, 32, 60, 0.5);
+            border-radius: 4px;
+        }
+        .projects-scroller::-webkit-scrollbar-thumb {
+            background: #00bfff;
+            border-radius: 4px;
+        }
+        .project-card {
+            scroll-snap-align: start;
+        }
+        
+        /* Project navigation */
+        .project-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        .project-nav-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .project-nav-btn.active {
+            background: #00bfff;
+            transform: scale(1.2);
+        }
+        
+        /* View more button */
+        .view-more {
+            display: inline-block;
+            background: #222;
+            color: #00bfff;
+            padding: 12px 26px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.08em;
+            border: 2px solid #00bfff;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            margin-top: 20px;
+        }
+        .view-more:hover {
+            background: #00bfff;
+            color: #fff;
+            transform: scale(1.05);
+        }
+        
         @media (max-width: 900px) {
             .hero-section {
                 flex-direction: column;
@@ -466,6 +541,9 @@
             .stat-box { border-bottom: 1px solid #00bfff33; border-right: none !important; }
             .stat-box:not(:last-child)::after {
                 display: none;
+            }
+            .projects-scroller {
+                grid-auto-columns: 85%;
             }
         }
         @media (max-width: 700px) {
@@ -484,6 +562,9 @@
             .intro h3 { font-size: 1em; }
             section { padding: 0 2vw; }
             .about-content, .skills-list, .projects-list, .contact-content { padding: 14px 8px; }
+            .projects-scroller {
+                grid-auto-columns: 90%;
+            }
         }
     </style>
 </head>
@@ -506,7 +587,7 @@
     </div>
     <section class="hero-section fade-in-up">
         <div class="profile-pic-container fade-in-left">
-            <img src="profile.jpg.jpg" alt="Yuvraj Singh" class="profile-pic">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=260&w=260&ixlib=rb-4.0.3&q=80" alt="Yuvraj Singh" class="profile-pic">
         </div>
         <div class="intro fade-in-right">
             <h2>Hello, I'm<br><span style="color:#00bfff;">Yuvraj Singh</span></h2>
@@ -535,7 +616,7 @@
             <div class="stat-label">years of Experience</div>
         </div>
         <div class="stat-box fade-in-up">
-            <div class="stat-number" id="stat-projects">30+</div>
+            <div class="stat-number" id="stat-projects">40+</div>
             <div class="stat-label">Projects Completed</div>
         </div>
         <div class="stat-box fade-in-up">
@@ -549,45 +630,68 @@
     </div>
 
     <!-- Projects Section -->
-<section id="projects" class="fade-in-up">
-  <div class="section-title">Projects</div>
-  <div class="projects-list">
+    <section id="projects" class="fade-in-up">
+        <div class="section-title">Projects</div>
+        <div class="projects-container">
+            <div class="projects-scroller" id="projectsScroller">
+                <!-- Portfolio Design Project -->
+                <div class="project-card fade-in-up">
+                    <div class="project-title">
+                        <i class="fas fa-laptop-code" style="color:#00bfff;"></i>
+                        Portfolio Design
+                    </div>
+                    <div class="project-desc">
+                        A modern and interactive portfolio website designed to showcase projects and skills with a sleek UI and smooth animations.
+                    </div>
+                    <a class="project-link" href="https://yuvrajbold-portfolio-2.netlify.app/" target="_blank">View Portfolio</a>
+                </div>
 
-    <div class="project-card fade-in-up">
-      <div class="project-title">
-        <i class="fab fa-js-square" style="color:#00bfff;"></i>
-        Maze Game
-      </div>
-      <div class="project-desc">
-        A fun and challenging maze game with keyboard and swipe controls. Built with vanilla JS and canvas.
-      </div>
-      <a class="project-link" href="https://684102248eda859751d0c1ed--yuvraj-maze-game.netlify.app/" target="_blank">Play Now</a>
-    </div>
+                <!-- Maze Game Project -->
+                <div class="project-card fade-in-up">
+                    <div class="project-title">
+                        <i class="fab fa-js-square" style="color:#00bfff;"></i>
+                        Maze Game
+                    </div>
+                    <div class="project-desc">
+                        A fun and challenging maze game with keyboard and swipe controls. Built with vanilla JS and canvas.
+                    </div>
+                    <a class="project-link" href="https://684102248eda859751d0c1ed--yuvraj-maze-game.netlify.app/" target="_blank">Play Now</a>
+                </div>
 
-    <div class="project-card fade-in-up">
-      <div class="project-title">
-        <i class="fab fa-discord" style="color:#00bfff;"></i>
-        Zyrok Team Discord Bot
-      </div>
-      <div class="project-desc">
-        A powerful multi-feature Discord bot with ticketing, minigames, messaging, and automation for your server.
-      </div>
-      <a class="project-link" href="https://zyrok-bot.netlify.app/" target="_blank">Explore Bot</a>
-    </div>
+                <!-- Discord Bot Project -->
+                <div class="project-card fade-in-up">
+                    <div class="project-title">
+                        <i class="fab fa-discord" style="color:#00bfff;"></i>
+                        Zyrok Team Discord Bot
+                    </div>
+                    <div class="project-desc">
+                        A powerful multi-feature Discord bot with ticketing, minigames, messaging, and automation for your server.
+                    </div>
+                    <a class="project-link" href="https://zyrok-bot.netlify.app/" target="_blank">Explore Bot</a>
+                </div>
 
-    <div class="project-card fade-in-up">
-      <div class="project-title">
-        <i class="fas fa-gamepad" style="color:#00bfff;"></i>
-        BattleCraft Championships
-      </div>
-      <div class="project-desc">
-        Modern esports tournament platform featuring glassmorphism design, animated particle background, tournament listings, live leaderboards, and registration system.
-      </div>
-      <a class="project-link" href="https://demo-works.netlify.app/" target="_blank">View Tournament</a>
-    </div>
-
-  </div>
-</section>
+                <!-- BattleCraft Project -->
+                <div class="project-card fade-in-up">
+                    <div class="project-title">
+                        <i class="fas fa-gamepad" style="color:#00bfff;"></i>
+                        BattleCraft Championships
+                    </div>
+                    <div class="project-desc">
+                        Modern esports tournament platform featuring glassmorphism design, animated particle background, and registration system.
+                    </div>
+                    <a class="project-link" href="https://demo-works.netlify.app/" target="_blank">View Tournament</a>
+                </div>
+            </div>
+            
+            <!-- Project Navigation -->
+            <div class="project-nav" id="projectNav"></div>
+            
+            <!-- View More Button -->
+            <div style="text-align: center;">
+                <a href="#projects" class="view-more">View All Projects</a>
+            </div>
+        </div>
+    </section>
 
     <!-- Skills Section -->
     <section id="skills" class="fade-in-up">
@@ -627,6 +731,10 @@
             <p>
                 Hi! I'm Yuvraj, a passionate web developer who loves building interactive and creative web apps with JavaScript, HTML, and CSS.
                 I enjoy solving problems, learning new technologies, and sharing my projects with the world.
+            </p>
+            <p>
+                With over 40 projects completed and a growing skillset, I'm constantly pushing myself to create better, more innovative solutions.
+                My approach combines technical expertise with a keen eye for design and user experience.
             </p>
         </div>
     </section>
@@ -778,8 +886,8 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting && !statsAnimated) {
                     animateStatNumber('stat-years', '1+');
-                    animateStatNumber('stat-projects', '30+');
-                    animateStatNumber('stat-clients', '20+');
+                    animateStatNumber('stat-projects', '40+');
+                    animateStatNumber('stat-clients', '5+');
                     animateStatNumber('stat-skills', '10+');
                     statsAnimated = true;
                     obs.unobserve(statsBar);
@@ -810,6 +918,46 @@
         }
         update();
     }
+    
+    // Project navigation setup
+    function setupProjectNavigation() {
+        const scroller = document.getElementById('projectsScroller');
+        const nav = document.getElementById('projectNav');
+        const cards = scroller.querySelectorAll('.project-card');
+        
+        // Create navigation dots
+        cards.forEach((_, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'project-nav-btn';
+            if (i === 0) btn.classList.add('active');
+            btn.addEventListener('click', () => {
+                // Scroll to the project card
+                scroller.scrollTo({
+                    left: scroller.clientWidth * i,
+                    behavior: 'smooth'
+                });
+            });
+            nav.appendChild(btn);
+        });
+        
+        // Update active dot based on scroll position
+        scroller.addEventListener('scroll', () => {
+            const scrollPos = scroller.scrollLeft;
+            const cardWidth = scroller.clientWidth;
+            const activeIndex = Math.round(scrollPos / cardWidth);
+            
+            document.querySelectorAll('.project-nav-btn').forEach((btn, i) => {
+                if (i === activeIndex) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        });
+    }
+    
+    // Initialize project navigation
+    setupProjectNavigation();
     </script>
 </body>
 </html>
