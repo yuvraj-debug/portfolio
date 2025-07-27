@@ -32,7 +32,7 @@
             position: relative;
         }
 
-        /* Animated background */
+        /* Animated background - reduced intensity */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -68,8 +68,8 @@
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradient-move 3s linear infinite;
-            filter: drop-shadow(0 2px 12px #00bfff88);
+            animation: gradient-move 8s linear infinite;
+            filter: drop-shadow(0 2px 8px #00bfff44);
         }
 
         .logo span {
@@ -116,7 +116,7 @@
             font-weight: bold;
             text-decoration: none;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 12px rgba(255, 60, 172, 0.4);
+            box-shadow: 0 2px 8px rgba(255, 60, 172, 0.3);
             border: none;
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
@@ -124,7 +124,7 @@
 
         .navbar .download-btn:hover {
             background: #b3006e;
-            box-shadow: 0 4px 24px rgba(255, 60, 172, 0.7);
+            box-shadow: 0 4px 16px rgba(255, 60, 172, 0.5);
             transform: scale(1.05);
         }
 
@@ -154,10 +154,10 @@
             border-radius: 50%;
             object-fit: cover;
             border: 6px solid var(--primary);
-            box-shadow: 0 0 40px rgba(0, 191, 255, 0.4), 0 4px 32px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 30px rgba(0, 191, 255, 0.3), 0 4px 24px rgba(0, 0, 0, 0.4);
             background: #111;
             transition: all 0.4s ease;
-            animation: pulseGlow 2.5s infinite alternate;
+            animation: pulseGlow 3s infinite alternate;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -168,7 +168,7 @@
             font-size: 4.5rem;
             font-weight: bold;
             color: white;
-            text-shadow: 0 0 20px rgba(255,255,255,0.6);
+            text-shadow: 0 0 15px rgba(255,255,255,0.5);
             transform: rotate(-15deg);
             letter-spacing: 2px;
         }
@@ -203,7 +203,7 @@
             display: inline-block;
             color: var(--primary);
             font-weight: bold;
-            animation: blink 1s steps(1) infinite;
+            animation: blink 1.2s steps(1) infinite;
             font-size: 1.1em;
         }
 
@@ -235,12 +235,12 @@
         .btn-primary {
             background: var(--primary);
             color: #fff;
-            box-shadow: 0 4px 20px rgba(0, 191, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3);
         }
 
         .btn-primary:hover {
             background: #0099cc;
-            box-shadow: 0 6px 30px rgba(0, 191, 255, 0.7);
+            box-shadow: 0 6px 25px rgba(0, 191, 255, 0.5);
             transform: translateY(-3px);
         }
 
@@ -278,7 +278,7 @@
             background: var(--primary);
             color: #fff;
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 191, 255, 0.4);
+            box-shadow: 0 5px 12px rgba(0, 191, 255, 0.3);
         }
 
         /* Stats Section */
@@ -345,7 +345,7 @@
             border-radius: 2px;
         }
 
-        /* Projects Section */
+        /* Projects Section - Enhanced */
         #projects {
             position: relative;
             background: linear-gradient(to bottom, var(--darker) 0%, rgba(15, 32, 60, 0.8) 100%);
@@ -402,8 +402,10 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            transform: translateY(0);
         }
 
+        /* Reduced intensity for border animation */
         .project-card::before {
             content: '';
             position: absolute;
@@ -411,10 +413,10 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--primary));
+            background: linear-gradient(45deg, rgba(0,191,255,0.5), rgba(255,60,172,0.5), rgba(0,191,255,0.5));
             z-index: -1;
             border-radius: 22px;
-            animation: borderAnimation 3s linear infinite;
+            animation: borderAnimation 8s linear infinite;
             background-size: 400%;
         }
 
@@ -428,6 +430,11 @@
             background: inherit;
             border-radius: 20px;
             z-index: -1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 191, 255, 0.2);
         }
 
         .project-image {
@@ -457,7 +464,8 @@
             border-radius: 30px;
             font-size: 0.9em;
             font-weight: 500;
-            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 191, 255, 0.3);
+            z-index: 2;
         }
 
         .project-content {
@@ -485,6 +493,7 @@
             margin-bottom: 25px;
             flex-grow: 1;
             line-height: 1.6;
+            font-size: 1.05em;
         }
 
         .project-link {
@@ -497,12 +506,15 @@
             font-weight: 600;
             transition: all 0.3s ease;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 191, 255, 0.3);
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
         }
 
         .project-link:hover {
             background: #0099cc;
-            box-shadow: 0 6px 20px rgba(0, 191, 255, 0.6);
+            box-shadow: 0 6px 18px rgba(0, 191, 255, 0.5);
             transform: translateY(-3px);
         }
 
@@ -512,6 +524,20 @@
 
         .project-card.highlight .project-image {
             height: 280px;
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--secondary);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.8em;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(255, 60, 172, 0.3);
+            z-index: 2;
         }
 
         /* About Section */
@@ -559,8 +585,8 @@
 
         .skill-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 191, 255, 0.2);
-            border-color: rgba(0, 191, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 191, 255, 0.15);
+            border-color: rgba(0, 191, 255, 0.2);
         }
 
         .skill-icon {
@@ -656,15 +682,15 @@
             border-top: 1px solid var(--glass-border);
         }
 
-        /* Animations */
+        /* Animations - Reduced intensity */
         @keyframes gradient-move {
             0% { background-position: 0% 50%; }
             100% { background-position: 100% 50%; }
         }
 
         @keyframes pulseGlow {
-            0% { box-shadow: 0 0 40px rgba(0, 191, 255, 0.4), 0 4px 32px rgba(0, 0, 0, 0.5); }
-            100% { box-shadow: 0 0 60px rgba(0, 191, 255, 0.7), 0 8px 48px rgba(0, 0, 0, 0.6); }
+            0% { box-shadow: 0 0 30px rgba(0, 191, 255, 0.3), 0 4px 24px rgba(0, 0, 0, 0.4); }
+            100% { box-shadow: 0 0 40px rgba(0, 191, 255, 0.4), 0 6px 36px rgba(0, 0, 0, 0.5); }
         }
 
         @keyframes blink {
@@ -825,21 +851,21 @@
         </div>
     </div>
 
-    <!-- Projects Section -->
+    <!-- Projects Section - Enhanced -->
     <section id="projects">
         <div class="projects-header">
             <h2 class="section-title">My Projects</h2>
             <div class="project-filters">
-                <button class="filter-btn active">All</button>
-                <button class="filter-btn">Web Apps</button>
-                <button class="filter-btn">Games</button>
-                <button class="filter-btn">Design</button>
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web-apps">Web Apps</button>
+                <button class="filter-btn" data-filter="games">Games</button>
+                <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
             </div>
         </div>
         
         <div class="projects-grid">
             <!-- Highlighted Project -->
-            <div class="project-card highlight">
+            <div class="project-card highlight" data-category="web-apps">
                 <div class="project-image">
                     <div style="background: linear-gradient(45deg, #2c3e50, #4a235a, #1a5276); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
                         <i class="fas fa-server" style="font-size: 4rem; color: #4CAF50;"></i>
@@ -861,8 +887,31 @@
                 </div>
             </div>
             
-            <!-- Other Projects -->
-            <div class="project-card">
+            <!-- New E-commerce Store Project -->
+            <div class="project-card" data-category="ecommerce">
+                <div class="project-image">
+                    <div style="background: linear-gradient(45deg, #FF5722, #E91E63, #FF9800); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-shopping-bag" style="font-size: 4rem; color: #fff;"></i>
+                    </div>
+                    <div class="project-tag">E-commerce</div>
+                    <div class="project-badge">New</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">
+                        <i class="fas fa-shopping-bag"></i> E-commerce Store
+                    </h3>
+                    <p class="project-desc">
+                        A fully functional e-commerce store with product listings, shopping cart, 
+                        and checkout process. Built with modern frontend technologies for a seamless shopping experience.
+                    </p>
+                    <a href="https://ecommerce-website-demo-2.netlify.app/" class="project-link" target="_blank">
+                        Visit Store
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Portfolio Design Project -->
+            <div class="project-card" data-category="web-apps">
                 <div class="project-image">
                     <div style="background: linear-gradient(45deg, #1565C0, #1E88E5, #0D47A1); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
                         <i class="fas fa-laptop-code" style="font-size: 4rem; color: #fff;"></i>
@@ -883,7 +932,8 @@
                 </div>
             </div>
             
-            <div class="project-card">
+            <!-- Maze Game Project -->
+            <div class="project-card" data-category="games">
                 <div class="project-image">
                     <div style="background: linear-gradient(45deg, #C2185B, #E91E63, #AD1457); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
                         <i class="fas fa-gamepad" style="font-size: 4rem; color: #fff;"></i>
@@ -905,7 +955,8 @@
                 </div>
             </div>
             
-            <div class="project-card">
+            <!-- Discord Bot Project -->
+            <div class="project-card" data-category="web-apps">
                 <div class="project-image">
                     <div style="background: linear-gradient(45deg, #4527A0, #7E57C2, #5E35B1); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
                         <i class="fab fa-discord" style="font-size: 4rem; color: #7289da;"></i>
@@ -927,7 +978,8 @@
                 </div>
             </div>
             
-            <div class="project-card">
+            <!-- BattleCraft Championships Project -->
+            <div class="project-card" data-category="web-apps">
                 <div class="project-image">
                     <div style="background: linear-gradient(45deg, #0277BD, #039BE5, #01579B); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
                         <i class="fas fa-trophy" style="font-size: 4rem; color: #FFD700;"></i>
@@ -948,12 +1000,13 @@
                 </div>
             </div>
             
-            <div class="project-card">
+            <!-- E-commerce Dashboard Project (with updated link) -->
+            <div class="project-card" data-category="ecommerce">
                 <div class="project-image">
                     <div style="background: linear-gradient(45deg, #00695C, #00897B, #004D40); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-shopping-cart" style="font-size: 4rem; color: #fff;"></i>
+                        <i class="fas fa-chart-line" style="font-size: 4rem; color: #fff;"></i>
                     </div>
-                    <div class="project-tag">E-commerce</div>
+                    <div class="project-tag">Dashboard</div>
                 </div>
                 <div class="project-content">
                     <h3 class="project-title">
@@ -963,7 +1016,7 @@
                         A comprehensive e-commerce dashboard with analytics, inventory management, 
                         and customer insights. Built with React and Chart.js for data visualization.
                     </p>
-                    <a href="#" class="project-link" target="_blank">
+                    <a href="https://ecommerce-website-demo-2012.netlify.app/" class="project-link" target="_blank">
                         View Dashboard
                     </a>
                 </div>
@@ -1114,7 +1167,7 @@
     </footer>
 
     <script>
-        // Animated BG: Floating blue circles
+        // Animated BG: Floating blue circles - reduced intensity
         const canvas = document.querySelector('.animated-bg');
         const ctx = canvas.getContext('2d');
         let w = window.innerWidth,
@@ -1135,16 +1188,16 @@
                 x: Math.random() * w,
                 y: Math.random() * h,
                 r: 30 + Math.random() * 60,
-                dx: -0.2 + Math.random() * 0.4,
-                dy: -0.1 + Math.random() * 0.2,
-                alpha: 0.08 + Math.random() * 0.12,
+                dx: -0.1 + Math.random() * 0.2, // Slower movement
+                dy: -0.05 + Math.random() * 0.1, // Slower movement
+                alpha: 0.05 + Math.random() * 0.07, // Reduced opacity
                 color: blueShades[Math.floor(Math.random() * blueShades.length)]
             };
         }
 
         function createCircles() {
             circles = [];
-            let count = Math.max(18, Math.floor(w * h / 35000));
+            let count = Math.max(12, Math.floor(w * h / 40000)); // Fewer circles
             for (let i = 0; i < count; i++) circles.push(randomCircle());
         }
 
@@ -1156,7 +1209,7 @@
                 ctx.fillStyle = c.color;
                 ctx.globalAlpha = c.alpha;
                 ctx.shadowColor = c.color;
-                ctx.shadowBlur = 32;
+                ctx.shadowBlur = 20; // Reduced blur
                 ctx.fill();
                 ctx.globalAlpha = 1;
                 ctx.shadowBlur = 0;
@@ -1211,12 +1264,14 @@
                 }
             }
             
-            setTimeout(typeLoop, isDeleting ? 60 : typeSpeed);
+            setTimeout(typeLoop, isDeleting ? 80 : typeSpeed); // Slower deletion
         }
         setTimeout(typeLoop, 1000);
 
-        // Project filtering
+        // Project filtering functionality
         const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
                 // Remove active class from all buttons
@@ -1224,19 +1279,32 @@
                 // Add active class to clicked button
                 button.classList.add('active');
                 
-                // In a real implementation, you would filter projects here
+                // Get filter value
+                const filter = button.getAttribute('data-filter');
+                
+                // Filter projects
+                projectCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             });
         });
 
         // Project card hover animations
-        const projectCards = document.querySelectorAll('.project-card');
         projectCards.forEach(card => {
             card.addEventListener('mouseenter', () => {
                 card.style.transform = 'translateY(-10px)';
+                card.style.boxShadow = '0 15px 35px rgba(0, 191, 255, 0.15)';
             });
             
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
             });
         });
 
